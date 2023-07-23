@@ -3,9 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="{{url_for('static', filename='js/form.js')}}"></script>
-    <title>Character</title>
+    <title>Index</title>
 </head>
 <body>
     <div class="overlay"></div>
@@ -20,6 +18,9 @@
       <div class="col two">
         <h4>591 Systems (tm) <br /> <b>H</b>euristically <b>E</b>ncrypted <b>R</b>ealtime <b>O</b>perating <b>S</b>ystem (HEROS)</h4>
         <p>----------------------------------------</p>
+        <p>HEROS v 1.0.0</p>
+        <p>(c)2022 591 Industries</p>
+        <p>- Server 591 -</p>
       </div>
       <link type="text/css"  rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 
@@ -35,19 +36,10 @@
 
     {% include 'navbar.html' %}
 
-    <p class="clear"><br /></p>
+    <p>System Administrator Integrated Message System (SAIMS)</p>
+    <p>System Administrator (SYSADM) - Mack Richardson</p>
 
-    <form id="common_form" name="character_form" onsubmit="event.preventDefault(); submitForm('character_form', '/create_character', onSuccess, onError);">
-      <label>Name >></label><input type="text" / required><br />
-      <label>Class >></label><select name="class" / required>
-      <option value="None">Choose class...</option>
-      {% for class in classes %}
-        <option value="{{ class }}">{{ class }}</option>
-      {% endfor %}
-      <br />      
-      <input type="submit" value="submit" /><br>
-      <a class="button" alt="" href="index.html">Cancel</a>
-    </form>
+    <p class="clear"><br /></p>
   </div>
 </div>
     

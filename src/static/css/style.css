@@ -220,6 +220,7 @@ input[type=text],
 input[type=email], 
 input[type=password],
 input[type=number],
+select[name=class],
 textarea {
 	background: transparent;
 	border: none;
@@ -247,6 +248,7 @@ a.button:focus {
 }
 
 input[type=submit],
+button[type=submit],
 a.button {
 	background: transparent;
 	border: 1px solid #00dd00;
