@@ -15,7 +15,7 @@
 
     <header class="site clearfix">
       <div class="col one">
-        <img src="images/591_logo.png" alt="591 Systems" />
+        <img src="{{url_for('static', filename='img/vaultboy96.svg')}}" alt="591 Systems" />
       </div>
       <div class="col two">
         <h4>591 Systems (tm) <br /> <b>H</b>euristically <b>E</b>ncrypted <b>R</b>ealtime <b>O</b>perating <b>S</b>ystem (HEROS)</h4>
@@ -38,13 +38,14 @@
     <p class="clear"><br /></p>
 
     <form id="common_form" name="character_form" onsubmit="event.preventDefault(); submitForm('character_form', '/create_character', onSuccess, onError);">
-      <label>Name >></label><input type="text" / required><br />
-      <label>Class >></label><select name="class" / required>
-      <option value="None">Choose class...</option>
-      {% for class in classes %}
-        <option value="{{ class }}">{{ class }}</option>
+      <label>Name >></label><input id="name" name="name" type="text" / required><br />
+      <label>Class >></label><select id="origin" name="origin" / required>
+      <option value="None">Choose origin...</option>
+      {% for origin in origins %}
+        <option value="{{ origin }}">{{ origin }}</option>
       {% endfor %}
-      <br />      
+      </select>
+      <br />   
       <input type="submit" value="submit" /><br>
       <a class="button" alt="" href="index.html">Cancel</a>
     </form>
