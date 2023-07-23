@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LOGIN</title>
+</head>
+<body>
+    <div class="overlay"></div>
+<div class="scanline"></div>
+<div class="wrapper">
+  <div class="content clearfix">
+
+    <header class="site clearfix">
+      <div class="col one">
+        <img src="images/591_logo.png" alt="591 Systems" />
+      </div>
+      <div class="col two">
+        <h4>591 Systems (tm) <br /> <b>H</b>euristically <b>E</b>ncrypted <b>R</b>ealtime <b>O</b>perating <b>S</b>ystem (HEROS)</h4>
+        <p>----------------------------------------</p>
+        <p>HEROS v 1.0.0</p>
+        <p>(c)2022 591 Industries</p>
+        <p>- Server 591 -</p>
+      </div>
+      <link type="text/css"  rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+      
+      <script>
+        $(document).ready(function () {
+            $("#title").focus();
+            $("#text").autosize();
+        });
+      </script>
+      
+    </header>
+
+    <nav class="site clear">
+      <ul>
+        <li><a href="/" title="">Return Home</a></li>
+        <li><a href="#" title="">Our Clients</a></li>
+        <li><a href="#" title="">Contact Us</a></li>
+      </ul>
+    </nav>
+
+    <p>System Administrator Integrated Message System (SAIMS)</p>
+    <p>System Administrator (SYSADM) - Mack Richardson</p>
+
+    <p class="clear"><br /></p>
+
+    <form id="common_form" name="character_form" onsubmit="event.preventDefault(); submitForm('character_form', '/create_character', onSuccess, onError);">
+      <label>Name >></label><input type="text" /><br />
+      <label>Class >></label><input type="text" /><br />
+      <label>Level >></label><input type="number" /><br />
+      <label>HP >></label><input type="number" /><br />
+      <label>Strength >></label><input type="number" /><br />
+      <label>Dexterity >></label><input type="number" /><br />
+      <input type="submit" value="Submit" />
+      <a class="button" alt="" href="index.html">Cancel</a>
+    </form>
+  </div>
+</div>
+    
+</body>
+</html>

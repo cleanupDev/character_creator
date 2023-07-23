@@ -1,0 +1,30 @@
+version: '0.0.2'
+
+networks:
+  db_net:
+    driver: bridge
+
+services:
+  db:
+    image: mysql
+    container_name: db
+    restart: always
+    env_file:
+      - .env
+    ports:
+      - 3306:3306
+    networks:
+      - db_net
+    volumes:
+      - ./data:/var/lib/mysql
+
+  adminer:
+    image: adminer
+    container_name: adminer
+    restart: always
+    env_file:
+      - .env
+    ports:
+      - 8080:8080
+    networks:
+      - db_net
