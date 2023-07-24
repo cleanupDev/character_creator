@@ -1,0 +1,22 @@
+<header class="site clearfix">
+    <div class="col one">
+        <img src="{{url_for('static', filename='img/vaultboy96.svg')}}" alt="VTIMS" />
+    </div>
+    <div class="col two">
+      <h4> VTIM System (tm) <br /> <b>V</b>ault <b>T</b>ec <b>I</b>ndividual <b>M</b>onitoring <b>S</b>ystem (VTIMS)</h4>
+      <p>----------------------------------------</p>
+      <p>VTIMS v 1.0.0</p>
+      <p>(c)2023 VT Industries</p>
+      <p>- Server VT-295 -</p>
+    </div>
+    <link type="text/css"  rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    
+    <script>
+      $(document).ready(function () {
+          $("#title").focus();
+          $("#text").autosize();
+      });
+    </script>
+    
+  </header>

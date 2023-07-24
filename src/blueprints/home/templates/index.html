@@ -11,33 +11,12 @@
 <div class="wrapper">
   <div class="content clearfix">
 
-    <header class="site clearfix">
-      <div class="col one">
-        <img src="images/591_logo.png" alt="591 Systems" />
-      </div>
-      <div class="col two">
-        <h4>591 Systems (tm) <br /> <b>H</b>euristically <b>E</b>ncrypted <b>R</b>ealtime <b>O</b>perating <b>S</b>ystem (HEROS)</h4>
-        <p>----------------------------------------</p>
-        <p>HEROS v 1.0.0</p>
-        <p>(c)2022 591 Industries</p>
-        <p>- Server 591 -</p>
-      </div>
-      <link type="text/css"  rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-
-      
-      <script>
-        $(document).ready(function () {
-            $("#title").focus();
-            $("#text").autosize();
-        });
-      </script>
-      
-    </header>
+    {% include 'header.html' %}
 
     {% include 'navbar.html' %}
 
     <p>System Administrator Integrated Message System (SAIMS)</p>
-    <p>System Administrator (SYSADM) - Mack Richardson</p>
+    <p>System Administrator (SYSADM) - The Overseer</p>
 
     <p class="clear"><br /></p>
   </div>

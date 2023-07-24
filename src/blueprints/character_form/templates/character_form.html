@@ -13,25 +13,7 @@
 <div class="wrapper">
   <div class="content clearfix">
 
-    <header class="site clearfix">
-      <div class="col one">
-        <img src="{{url_for('static', filename='img/vaultboy96.svg')}}" alt="591 Systems" />
-      </div>
-      <div class="col two">
-        <h4>591 Systems (tm) <br /> <b>H</b>euristically <b>E</b>ncrypted <b>R</b>ealtime <b>O</b>perating <b>S</b>ystem (HEROS)</h4>
-        <p>----------------------------------------</p>
-      </div>
-      <link type="text/css"  rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-
-      
-      <script>
-        $(document).ready(function () {
-            $("#title").focus();
-            $("#text").autosize();
-        });
-      </script>
-      
-    </header>
+    {% include 'header.html' %}
 
     {% include 'navbar.html' %}
 
