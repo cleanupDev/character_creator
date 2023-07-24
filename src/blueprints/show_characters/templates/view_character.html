@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{{url_for('static', filename='js/form.js')}}"></script>
+    <title>Character Details</title>
+    <link type="text/css"  rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="overlay"></div>
+    <div class="scanline"></div>
+    <div class="wrapper">
+        <div class="content clearfix">
+
+            <header class="site clearfix">
+                <div class="col one">
+                    <img src="{{url_for('static', filename='img/vaultboy96.svg')}}" alt="591 Systems" />
+                </div>
+                <div class="col two">
+                    <h4>591 Systems (tm) <br /> <b>H</b>euristically <b>E</b>ncrypted <b>R</b>ealtime <b>O</b>perating <b>S</b>ystem (HEROS)</h4>
+                    <p>----------------------------------------</p>
+                </div>
+            </header>
+
+            {% include 'navbar.html' %}
+
+            <p class="clear"><br /></p>
+
+            <article class="post">
+                <header>
+                    <h2>Character Details</h2>
+                </header>
+                <section>
+                    <h3>Name: {{ character.name }}</h3>
+                    <p>Level: {{ character.level }}</p>
+                    <p>Experience: {{ character.experience }}</p>
+                    <p>Origin: {{ character.origin }}</p>
+                    <h3>Attributes:</h3>
+                    <ul>
+                        <li>Strength: {{ character.attributes.strength }}</li>
+                        <li>Perception: {{ character.attributes.perception }}</li>
+                        <li>Endurance: {{ character.attributes.endurance }}</li>
+                        <li>Charisma: {{ character.attributes.charisma }}</li>
+                        <li>Intelligence: {{ character.attributes.intelligence }}</li>
+                        <li>Agility: {{ character.attributes.agility }}</li>
+                        <li>Luck: {{ character.attributes.luck }}</li>
+                    </ul>
+                    <h3>Skills:</h3>
+                    <ul>
+                        {% for skill in character.skills %}
+                            <li>{{ skill.skill }} (Attribute: {{ skill.attribute }}, Details: {{ skill.details }})</li>
+                        {% endfor %}
+                    </ul>
+                    <h3>Perks:</h3>
+                    <ul>
+                        {% for perk in character.perks %}
+                            <li>{{ perk.name }} (Rank: {{ perk.rank }}, Description: {{ perk.description }})</li>
+                        {% endfor %}
+                    </ul>
+                </section>
+                <a class="button" alt="" href="{{ url_for('show_characters.edit_character', name=character.name) }}">Edit</a>
+
+            </article>
+        </div>
+    </div>
+</body>
+</html>

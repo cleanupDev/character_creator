@@ -1,5 +1,6 @@
 class Character:
     def __init__(self, **kwargs):
+        self.id = kwargs.get('id') or None
         self.name = kwargs.get('name')
         self.level = kwargs.get('level') or 1
         self.experience = kwargs.get('experience') or 1
@@ -14,6 +15,17 @@ class Character:
     def __repr__(self):
         return f'Character(name={self.name}, level={self.level}, experience={self.experience}, origin={self.origin}, attributes={self.attributes}, skills={self.skills}, perks={self.perks})'
     
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'name': self.name,
+            'level': self.level,
+            'experience': self.experience,
+            'origin': self.origin,
+            'attributes': self.attributes.to_dict(),
+            'skills': [skill.to_dict() for skill in self.skills],
+            'perks': [perk.to_dict() for perk in self.perks]
+        }
     
 class Attributes:
     def __init__(self, strength, perception, endurance, charisma, intelligence, agility, luck):
@@ -31,9 +43,21 @@ class Attributes:
     def __repr__(self):
         return f'Attributes(strength={self.strength}, perception={self.perception}, endurance={self.endurance}, charisma={self.charisma}, intelligence={self.intelligence}, agility={self.agility}, luck={self.luck})'
     
+    def to_dict(self):
+        return {
+            'strength': self.strength,
+            'perception': self.perception,
+            'endurance': self.endurance,
+            'charisma': self.charisma,
+            'intelligence': self.intelligence,
+            'agility': self.agility,
+            'luck': self.luck
+        }
+    
 
 class Skills:
-    def __init__(self, skill, attribute, details):
+    def __init__(self, id, skill, attribute, details):
+        self.id = id
         self.skill = skill
         self.attribute = attribute
         self.details = details
@@ -44,6 +68,14 @@ class Skills:
     def __repr__(self):
         return f'Skills(skill={self.skill}, attribute={self.attribute}, details={self.details})'
     
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'skill': self.skill,
+            'attribute': self.attribute,
+            'details': self.details
+        }
+        
     
 class Perks:
     def __init__(self, perk_id, name, rank, description):
@@ -57,3 +89,11 @@ class Perks:
 
     def __repr__(self):
         return f'Perks(perk_id={self.perk_id}, name={self.name}, description={self.description})'
+    
+    def to_dict(self):
+        return {
+            'perk_id': self.perk_id,
+            'name': self.name,
+            'rank': self.rank,
+            'description': self.description
+        }

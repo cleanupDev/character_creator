@@ -90,3 +90,53 @@ def create_new_character(char: Character) -> bool:
         logging.critical(f"Error creating character: {e}")
         print(e)
         return False
+
+
+def edit_character(char: Character):
+    try:
+        conn = connection()
+        cursor = conn.cursor()
+
+        cursor.execute(
+            """UPDATE characters SET name = %s, level = %s, experience = %s, origin = %s WHERE id = %s""",
+            (char.name, char.level, char.experience, char.origin, char.id),
+        )
+
+        cursor.execute(
+            """UPDATE attributes SET strength = %s, perception = %s, endurance = %s, charisma = %s, intelligence = %s, agility = %s, luck = %s WHERE character_id = %s""",
+            (
+                char.attributes.strength,
+                char.attributes.perception,
+                char.attributes.endurance,
+                char.attributes.charisma,
+                char.attributes.intelligence,
+                char.attributes.agility,
+                char.attributes.luck,
+                char.id,
+            ),
+        )
+        
+        for skill in char.skills:
+            cursor.execute(
+                """UPDATE character_skills SET skill_level = %s, tag_skill = %s WHERE character_id = %s AND skill_id = %s""",
+                (skill.skill_level, skill.tag_skill, char.id, skill.id),
+            )
+            
+        for perk in char.perks:
+            cursor.execute(
+                """UPDATE character_perks SET perk_rank = %s WHERE character_id = %s AND perk_id = %s""",
+                (perk.rank, char.id, perk.perk_id),
+            )
+            
+        conn.commit()
+        return True
+        
+    except Exception as e:
+        logging.critical(f"Error updating character: {e}")
+        print(e)
+        return False
+    finally:
+        conn.close()
+        logging.info(f"Connection closed")
+    
+    

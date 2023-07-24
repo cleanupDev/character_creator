@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{{url_for('static', filename='js/form.js')}}"></script>
+    <title>Edit Character</title>
+    <link type="text/css"  rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="overlay"></div>
+    <div class="scanline"></div>
+    <div class="wrapper">
+        <div class="content clearfix">
+
+            <header class="site clearfix">
+                <div class="col one">
+                    <img src="{{url_for('static', filename='img/vaultboy96.svg')}}" alt="591 Systems" />
+                </div>
+                <div class="col two">
+                    <h4>591 Systems (tm) <br /> <b>H</b>euristically <b>E</b>ncrypted <b>R</b>ealtime <b>O</b>perating <b>S</b>ystem (HEROS)</h4>
+                    <p>----------------------------------------</p>
+                </div>
+            </header>
+
+            {% include 'navbar.html' %}
+
+            <p class="clear"><br /></p>
+
+            <article class="post">
+                <header>
+                    <h2>Edit Character</h2>
+                </header>
+                <section>
+                    <form id="edit_character_form" name="edit_character_form" onsubmit="submitForm('edit_character_form', '/update_character', onSuccess, onError);">
+                        <label>Name:</label>
+                        <input type="text" name="name" value="{{ character.name }}" /><br />
+
+                        <label>Level:</label>
+                        <input type="number" name="level" value="{{ character.level }}" /><br />
+
+                        <label>Experience:</label>
+                        <input type="number" name="experience" value="{{ character.experience }}" /><br />
+
+                        <label>Origin:</label>
+                        <input type="text" name="origin" value="{{ character.origin }}" /><br />
+
+                        <h3>Attributes:</h3>
+                        <label>Strength:</label>
+                        <input type="number" name="strength" value="{{ character.attributes.strength }}" /><br />
+
+                        <label>Perception:</label>
+                        <input type="number" name="perception" value="{{ character.attributes.perception }}" /><br />
+
+                        <label>Endurance:</label>
+                        <input type="number" name="endurance" value="{{ character.attributes.endurance }}" /><br />
+
+                        <label>Charisma:</label>
+                        <input type="number" name="charisma" value="{{ character.attributes.charisma }}" /><br />
+
+                        <label>Intelligence:</label>
+                        <input type="number" name="intelligence" value="{{ character.attributes.intelligence }}" /><br />
+
+                        <label>Agility:</label>
+                        <input type="number" name="agility" value="{{ character.attributes.agility }}" /><br />
+
+                        <label>Luck:</label>
+                        <input type="number" name="luck" value="{{ character.attributes.luck }}" /><br />
+
+                        <h3>Skills:</h3>
+                        {% for skill in character.skills %}
+                            <label>{{ skill.skill }}:</label>
+                            <input type="text" name="character.skills[{{ loop.index0 }}][skill]" value="{{ skill.skill }}" /><br />
+                            <label>{{ skill.attribute }}:</label>
+                            <input type="text" name="character.skills[{{ loop.index0 }}][attribute]" value="{{ skill.attribute }}" /><br />
+                            <label>{{ skill.details }}:</label>
+                            <input type="text" name="character.skills[{{ loop.index0 }}][details]" value="{{ skill.details }}" /><br />
+                        {% endfor %}
+
+                        <h3>Perks:</h3>
+                        {% for perk in character.perks %}
+                            <label>{{ perk.name }}:</label>
+                            <input type="text" name="perks[{{ loop.index0 }}][name]" value="{{ perk.name }}" /><br />
+                            <label>{{ perk.rank }}:</label>
+                            <input type="number" name="perks[{{ loop.index0 }}][rank]" value="{{ perk.rank }}" /><br />
+                            <label>{{ perk.description }}:</label>
+                            <input type="text" name="perks[{{ loop.index0 }}][description]" value="{{ perk.description }}" /><br />
+                        {% endfor %}
+
+
+
+                        <input type="hidden" name="id" value="{{ character.id }}" />
+                        <input type="submit" value="submit" />
+                        <a class="button" alt="" href="{{ url_for('show_characters.show_characters') }}">Cancel</a>
+                    </form>
+
+                </section>
+            </article>
+        </div>
+    </div>
+</body>
+</html>
