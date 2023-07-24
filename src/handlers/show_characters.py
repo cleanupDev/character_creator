@@ -40,6 +40,7 @@ def get_characters():
                 luck=attributes[7]
             )
 
+            
             cursor.execute("""
                 SELECT * FROM character_skills
                 LEFT JOIN skills ON character_skills.skill_id = skills.id
@@ -48,12 +49,18 @@ def get_characters():
 
             skills = cursor.fetchall()
             
-            # Skill(id, skill, attribute, details)
-            skills = [Skills(id=skill[4], skill=skill[5], attribute=skill[6], details=skill[7]) for skill in skills]
-
-
-                    
             
+            # Skill(id, skill, attribute, details)
+            char.skills = [Skills(id=skill[1], skill=skill[5], attribute=skill[6], details=skill[7]) for skill in skills]
+                        
+            cursor.execute("""
+                SELECT * FROM character_perks
+                LEFT JOIN perks ON character_perks.perk_id = perks.id
+                WHERE character_id = %s
+            """, (char.id,))  # Pass char.id as an argument
+
+            perks = cursor.fetchall()
+            char.perks = [Perks(id=perk[1], name=perk[4], rank=perk[2], description=perk[7]) for perk in perks]
             
         return characters
     

@@ -69,24 +69,43 @@
                         <input type="number" name="luck" value="{{ character.attributes.luck }}" /><br />
 
                         <h3>Skills:</h3>
-                        {% for skill in character.skills %}
-                            <label>{{ skill.skill }}:</label>
-                            <input type="text" name="character.skills[{{ loop.index0 }}][skill]" value="{{ skill.skill }}" /><br />
-                            <label>{{ skill.attribute }}:</label>
-                            <input type="text" name="character.skills[{{ loop.index0 }}][attribute]" value="{{ skill.attribute }}" /><br />
-                            <label>{{ skill.details }}:</label>
-                            <input type="text" name="character.skills[{{ loop.index0 }}][details]" value="{{ skill.details }}" /><br />
-                        {% endfor %}
+                        <input type="hidden" name="skills" value="{{ character.skills }}" />
+
+                        <!-- Display skills data in a table (optional) -->
+                        <table>
+                            <tr>
+                                <th>Skill</th>
+                                <th>Attribute</th>
+                                <th>Details</th>
+                            </tr>
+                            {% for skill in character.skills %}
+                            <tr>
+                                <td>{{ skill.skill }}</td>
+                                <td>{{ skill.attribute }}</td>
+                                <td>{{ skill.details }}</td>
+                            </tr>
+                            {% endfor %}
+                        </table>
+
 
                         <h3>Perks:</h3>
-                        {% for perk in character.perks %}
-                            <label>{{ perk.name }}:</label>
-                            <input type="text" name="perks[{{ loop.index0 }}][name]" value="{{ perk.name }}" /><br />
-                            <label>{{ perk.rank }}:</label>
-                            <input type="number" name="perks[{{ loop.index0 }}][rank]" value="{{ perk.rank }}" /><br />
-                            <label>{{ perk.description }}:</label>
-                            <input type="text" name="perks[{{ loop.index0 }}][description]" value="{{ perk.description }}" /><br />
-                        {% endfor %}
+                        <input type="hidden" name="perks" value="{{ character.perks }}" />
+
+                        <!-- Display perks data in a table (optional) -->
+                        <table>
+                            <tr>
+                                <th>Name</th>
+                                <th>Rank</th>
+                                <th>Description</th>
+                            </tr>
+                            {% for perk in character.perks %}
+                            <tr>
+                                <td>{{ perk.name }}</td>
+                                <td>{{ perk.rank }}</td>
+                                <td>{{ perk.description }}</td>
+                            </tr>
+                            {% endfor %}
+                        </table>
 
 
 

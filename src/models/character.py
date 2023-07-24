@@ -78,21 +78,21 @@ class Skills:
         
     
 class Perks:
-    def __init__(self, perk_id, name, rank, description):
-        self.perk_id = perk_id
+    def __init__(self, id, name, rank, description):
+        self.id = id
         self.name = name
         self.rank = rank or 1
         self.description = description
 
     def __str__(self):
-        return f'Perks(perk_id={self.perk_id}, name={self.name}, description={self.description})'
+        return f'Perks(id={self.id}, name={self.name}, description={self.description})'
 
     def __repr__(self):
-        return f'Perks(perk_id={self.perk_id}, name={self.name}, description={self.description})'
+        return f'Perks(id={self.id}, name={self.name}, description={self.description})'
     
     def to_dict(self):
         return {
-            'perk_id': self.perk_id,
+            'id': self.id,
             'name': self.name,
             'rank': self.rank,
             'description': self.description

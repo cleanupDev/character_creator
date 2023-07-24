@@ -92,7 +92,8 @@ def create_new_character(char: Character) -> bool:
         return False
 
 
-def edit_character(char: Character):
+def update_character_in_db(char: Character):
+    logging.info(f"edit_character called with {char}")
     try:
         conn = connection()
         cursor = conn.cursor()
@@ -115,28 +116,16 @@ def edit_character(char: Character):
                 char.id,
             ),
         )
-        
-        for skill in char.skills:
-            cursor.execute(
-                """UPDATE character_skills SET skill_level = %s, tag_skill = %s WHERE character_id = %s AND skill_id = %s""",
-                (skill.skill_level, skill.tag_skill, char.id, skill.id),
-            )
-            
-        for perk in char.perks:
-            cursor.execute(
-                """UPDATE character_perks SET perk_rank = %s WHERE character_id = %s AND perk_id = %s""",
-                (perk.rank, char.id, perk.perk_id),
-            )
             
         conn.commit()
+        conn.close()
         return True
         
     except Exception as e:
+        conn.rollback()
+        conn.close()
         logging.critical(f"Error updating character: {e}")
         print(e)
         return False
-    finally:
-        conn.close()
-        logging.info(f"Connection closed")
     
     
